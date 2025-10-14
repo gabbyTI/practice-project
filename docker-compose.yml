@@ -11,9 +11,6 @@ services:
       - DB_NAME=myapp
       - DB_USER=user
       - DB_PASSWORD=password
-    command: >
-      fefwerfgerg 
-      rewtgerter
     volumes:
       - .:/app
       - /app/node_modules
