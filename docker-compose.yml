@@ -1,0 +1,46 @@
+services:
+  # Simple Node.js API
+  api:
+    build: .
+    container_name: simple-api
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - DB_HOST=db
+      - DB_NAME=myapp
+      - DB_USER=user
+      - DB_PASSWORD=password
+    volumes:
+      - .:/app
+      - /app/node_modules
+    depends_on:
+      - db
+
+  # PostgreSQL Database
+  db:
+    image: postgres:15
+    container_name: simple-db
+    environment:
+      - POSTGRES_DB=myapp
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  # pgAdmin for database management
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: simple-pgadmin
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+      - PGADMIN_DEFAULT_PASSWORD=admin
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+
+volumes:
+  db_data:
