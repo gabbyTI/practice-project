@@ -29,7 +29,7 @@ async function testConnection() {
 // Routes
 app.get('/', (req, res) => {
   res.json({
-    message: 'Simple Docker Compose API - LEGACY WATCH WORKS!',
+    message: 'Simple Docker Compose API - LEGACY WATCH WORKS!. relaod',
     status: 'running',
     database: process.env.DB_HOST || 'localhost',
     timestamp: new Date().toISOString(),
